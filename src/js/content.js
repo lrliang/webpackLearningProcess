@@ -1,5 +1,8 @@
 function Content(){
+    var dom = document.getElementById('root');
     var content = document.createElement('div');
     content.innerHTML = 'Content'
     dom.append(content)
 }
+
+export default Content
