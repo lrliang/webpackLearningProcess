@@ -6,6 +6,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(eot|ttf|svg)/,
+        use: {
+          loader: 'file-loader',
+        },
+      },
+      {
         test: /\.jpg/,
         use: {
           loader: 'url-loader',
