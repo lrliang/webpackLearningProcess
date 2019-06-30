@@ -1,5 +1,6 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -19,7 +20,7 @@ module.exports = {
           options: {
             name: '[name]_[hash].[ext]',
             outputPath: 'images/',
-            limit: 2048
+            limit: 2048,
           },
         },
       },
@@ -30,18 +31,19 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2
+              importLoaders: 2,
             },
           },
           'sass-loader',
-          'postcss-loader'
-        ]
-      }
+          'postcss-loader',
+        ],
+      },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'src/index.html',
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({template: 'src/index.html'}),
+    new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*']}),
+  ],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
