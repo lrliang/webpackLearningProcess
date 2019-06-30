@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
+  devtool: 'source-map',
   entry: {
     main: './src/index.js',
-    sub: './src/index.js'
   },
   module: {
     rules: [
@@ -48,7 +48,6 @@ module.exports = {
     new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*']}),
   ],
   output: {
-    publicPath: 'http://cdn.com',
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
