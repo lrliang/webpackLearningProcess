@@ -57,7 +57,14 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            ['@babel/preset-env', {useBuiltIns: 'usage'}],
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  chrome: "67"
+                },
+                useBuiltIns: 'usage',
+              }],
           ],
         },
       },
