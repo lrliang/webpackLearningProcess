@@ -56,14 +56,24 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: [
+          // presets: [
+          //   [
+          //     '@babel/preset-env',
+          //     {
+          //       targets: {
+          //         chrome: "67"
+          //       },
+          //       useBuiltIns: 'usage',
+          //     }],
+          // ],
+          'plugins': [
             [
-              '@babel/preset-env',
+              '@babel/plugin-transform-runtime',
               {
-                targets: {
-                  chrome: "67"
-                },
-                useBuiltIns: 'usage',
+                'corejs': 2,
+                'helpers': true,
+                'regenerator': true,
+                'useESModules': false,
               }],
           ],
         },
