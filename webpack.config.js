@@ -13,11 +13,11 @@ module.exports = {
     contentBase: './dist',
     open: true,
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3000',
     },
     port: 8000,
     hot: true,
-    hotOnly: true
+    hotOnly: true,
   },
   module: {
     rules: [
@@ -51,6 +51,13 @@ module.exports = {
           'sass-loader',
           'postcss-loader',
         ],
+      }, {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ["@babel/preset-env"]
+        },
       },
     ],
   },
