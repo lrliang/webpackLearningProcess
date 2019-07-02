@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
@@ -14,7 +15,9 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:3000'
     },
-    port: 8000
+    port: 8000,
+    hot: true,
+    hotOnly: true
   },
   module: {
     rules: [
@@ -54,6 +57,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({template: 'src/index.html'}),
     new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*']}),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   output: {
     filename: '[name].js',
