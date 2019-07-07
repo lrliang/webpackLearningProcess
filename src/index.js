@@ -1,12 +1,3 @@
-import '@babel/polyfill'
+import { add } from './math'
 
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-
-class App extends Component {
-  render () {
-    return <div>Hello!</div>
-  }
-}
-
-ReactDOM.render(<App/>, document.getElementById('root'))
+add(1, 2)
