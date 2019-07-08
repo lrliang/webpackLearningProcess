@@ -1,3 +1,3 @@
-import _ from 'lodash'
+import test from './test'
 
-console.log(_.join(['a', 'b', 'c'], '***'))
+console.log(test.name)
