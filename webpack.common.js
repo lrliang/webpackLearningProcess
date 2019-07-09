@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -34,6 +35,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({template: 'src/index.html'}),
     new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*']}),
+    new webpack.ProvidePlugin({
+      _: 'lodash'
+    })
   ],
   optimization: {
     usedExports: true,
