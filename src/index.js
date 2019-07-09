@@ -1,3 +1,4 @@
-import test from './test'
+import './style.css'
+import './test.css'
 
-console.log(test.name)
+console.log('hello')

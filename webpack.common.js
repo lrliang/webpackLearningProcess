@@ -24,21 +24,7 @@ module.exports = {
             limit: 2048,
           },
         },
-      },
-      {
-        test: /\.scss/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-            },
-          },
-          'sass-loader',
-          'postcss-loader',
-        ],
-      }, {
+      },{
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -50,6 +36,7 @@ module.exports = {
     new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*']}),
   ],
   optimization: {
+    usedExports: true,
     splitChunks: {
       chunks: 'all',
       minSize: 30000, //大于30k的代码会做代码分割
@@ -76,6 +63,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, 'dist'),
   },
 }
