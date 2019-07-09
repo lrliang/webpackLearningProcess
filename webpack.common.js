@@ -2,8 +2,11 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const webpack = require('webpack')
+const merge = require('webpack-merge')
+const devConfig = require('./webpack.dev')
+const prodConfig = require('./webpack.prod')
 
-module.exports = {
+const commonConfig = {
   entry: {
     main: './src/index.js',
   },
@@ -25,7 +28,7 @@ module.exports = {
             limit: 2048,
           },
         },
-      },{
+      }, {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -36,8 +39,8 @@ module.exports = {
     new HtmlWebpackPlugin({template: 'src/index.html'}),
     new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['**/*']}),
     new webpack.ProvidePlugin({
-      _: 'lodash'
-    })
+      _: 'lodash',
+    }),
   ],
   optimization: {
     usedExports: true,
@@ -60,14 +63,21 @@ module.exports = {
           priority: -20,
           reuseExistingChunk: false,
           filename: 'common.js',
-        }
+        },
       },
 
-    }
+    },
   },
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, 'dist'),
   },
+}
+
+module.exports = (env) => {
+  if (env && env.production) {
+    return merge(commonConfig, prodConfig)
+  }
+  return merge(commonConfig, devConfig)
 }
