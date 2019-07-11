@@ -1,5 +1,4 @@
-import './style.css'
-import './test.css'
+import * as math from './math'
+import * as string from './string'
 
-console.log('hello')
-console.log(_.join(['l','lr'], '-'))
+export default {math, string}
